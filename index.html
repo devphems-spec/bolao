@@ -412,12 +412,12 @@ async function carregarParticipantes(){
     try{
 
         const resposta = await fetch(
-            "https://script.google.com/macros/s/AKfycbymphn8A6tUsNCQeJ69KfdnKJ7_M80iBgRxNuMWPT2IpF2I2dxreWyMn2mElOmGDsAa4A/exec"
+            "https://script.google.com/macros/s/AKfycbwo4HY4HuR9Ut4Qd019UUwWh-Q_It6oRsVmFTQU-9pEH4BR7HNxAKhSDGS3_ZH1t5kjHA/exec"
         );
 
         participantes = await resposta.json();
 
-       carregarParticipantes();
+        atualizarTabela();
 
     }catch(erro){
 
@@ -460,7 +460,7 @@ async function salvarPalpite(){
     try{
 
       const resposta = await fetch(
-    "https://script.google.com/macros/s/AKfycbymphn8A6tUsNCQeJ69KfdnKJ7_M80iBgRxNuMWPT2IpF2I2dxreWyMn2mElOmGDsAa4A/exec",
+    "https://script.google.com/macros/s/AKfycbwo4HY4HuR9Ut4Qd019UUwWh-Q_It6oRsVmFTQU-9pEH4BR7HNxAKhSDGS3_ZH1t5kjHA/exec",
     {
         method:"POST",
         body:new URLSearchParams({
@@ -533,7 +533,7 @@ function ativarModoAdmin(){
 
         admin = true;
 
-        atualizarTabela();
+       carregarParticipantes();
 
         mostrarMensagem(
             "Modo administrador ativado."
@@ -569,12 +569,9 @@ function excluirParticipante(index){
 
     participantes.splice(index,1);
 
-    localStorage.setItem(
-        "participantes",
-        JSON.stringify(participantes)
-    );
+ 
 
-    atualizarTabela();
+    carregarParticipantes();
 
     mostrarMensagem(
         "🗑️ Participante removido."
@@ -585,12 +582,9 @@ function confirmarPagamento(index){
 
     participantes[index].pago = true;
 
-    localStorage.setItem(
-        "participantes",
-        JSON.stringify(participantes)
-    );
+  
 
-    atualizarTabela();
+   carregarParticipantes();
 
     mostrarMensagem(
         "Pagamento confirmado."
@@ -651,7 +645,7 @@ padding:6px 12px;
 
 }
 
-atualizarTabela();
+carregarParticipantes();
 
 </script>
 <div id="toast" class="toast"></div>
