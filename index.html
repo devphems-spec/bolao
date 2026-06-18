@@ -479,11 +479,11 @@ async function salvarPalpite(){
             throw new Error("Erro no servidor");
         }
 
-   await carregarParticipantes();
+document
+.getElementById("pagamento")
+.style.display = "block";
 
-        document
-        .getElementById("pagamento")
-        .style.display = "block";
+carregarParticipantes();
 
         document.getElementById("nome").value = "";
         document.getElementById("celular").value = "";
