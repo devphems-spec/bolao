@@ -412,7 +412,7 @@ async function carregarParticipantes(){
     try{
 
         const resposta = await fetch(
-            "https://script.google.com/macros/s/AKfycbwo4HY4HuR9Ut4Qd019UUwWh-Q_It6oRsVmFTQU-9pEH4BR7HNxAKhSDGS3_ZH1t5kjHA/exec"
+            "https://script.google.com/macros/s/AKfycbzyfPtT26UyBdo-nyYQGEcRyNaZ9F1yl822Rg4yA7P-KPgvMf5In-tUh-JWBbQcVd62-Q/exec"
         );
 
         participantes = await resposta.json();
@@ -460,7 +460,7 @@ async function salvarPalpite(){
     try{
 
       const resposta = await fetch(
-    "https://script.google.com/macros/s/AKfycbwo4HY4HuR9Ut4Qd019UUwWh-Q_It6oRsVmFTQU-9pEH4BR7HNxAKhSDGS3_ZH1t5kjHA/exec",
+    "https://script.google.com/macros/s/AKfycbzyfPtT26UyBdo-nyYQGEcRyNaZ9F1yl822Rg4yA7P-KPgvMf5In-tUh-JWBbQcVd62-Q/exec",
     {
         method:"POST",
         body:new URLSearchParams({
@@ -578,17 +578,42 @@ function excluirParticipante(index){
     );
 
 }
-function confirmarPagamento(index){
+async function confirmarPagamento(index){
 
-    participantes[index].pago = true;
+    const participante =
+    participantes[index];
 
-  
+    try{
 
-   carregarParticipantes();
+        const resposta = await fetch(
+            "https://script.google.com/macros/s/AKfycbzyfPtT26UyBdo-nyYQGEcRyNaZ9F1yl822Rg4yA7P-KPgvMf5In-tUh-JWBbQcVd62-Q/exec",
+            {
+                method:"POST",
+                body:new URLSearchParams({
+                    acao:"confirmarPagamento",
+                    celular:participante.celular
+                })
+            }
+        );
 
-    mostrarMensagem(
-        "Pagamento confirmado."
-    );
+        if(!resposta.ok){
+            throw new Error();
+        }
+
+        await carregarParticipantes();
+
+        mostrarMensagem(
+            "✅ Pagamento confirmado!"
+        );
+
+    }catch{
+
+        mostrarMensagem(
+            "Erro ao confirmar pagamento",
+            "erro"
+        );
+
+    }
 
 }
 function atualizarTabela(){
