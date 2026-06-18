@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:
+linear-gradient(
+135deg,
+#009c3b,
+#012169
+);
+
+min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+    margin-bottom:25px;
+}
+h1{
+    text-align:center;
+    color:#009c3b;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+.copa{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:12px;
+    input{
+    border:2px solid #e5e5e5;
+    transition:.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#009c3b;
+    box-shadow:
+    0 0 0 4px
+    rgba(0,156,59,.15);
+}
+    border-radius:8px;
+}
+
+.placar{
+    display:flex;
+    gap:10px;
+}
+
+.placar div{
+    flex:1;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    button{
+    background:
+    linear-gradient(
+    135deg,
+    #009c3b,
+    #00c853
+    );
+
+    font-weight:bold;
+    letter-spacing:.5px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.15);
+}
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#007b2e;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#009c3b;
+    color:white;
+}
+
+#pagamento{
+    display:none;
+    text-align:center;
+}
+
+.valor{
+    font-size:24px;
+    color:#009c3b;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.email{
+    font-size:18px;
+    font-weight:bold;
+    color:#333;
+}
+
+.info{
+    background:#fff8e1;
+    padding:12px;
+    border-radius:8px;
+    margin-top:15px;
+}
+.toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    background:#009c3b;
+    color:white;
+    padding:15px 25px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    font-weight:bold;
+    z-index:9999;
+    opacity:0;
+    transform:translate(-50%,-20px);
+    transition:all .3s ease;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+.toast.erro{
+    background:#d32f2f;
+}
+#btnAdmin{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:none;
+    background:#009c3b;
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+    z-index:9999;
+    transition:.3s;
+}
+
+#btnAdmin:hover{
+    transform:scale(1.1);
+    background:#007b2e;
+}
+.banner-jogo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    margin-bottom:30px;
+}
+
+.time{
+    text-align:center;
+}
+
+.bandeira{
+    font-size:70px;
+    line-height:1;
+}
+
+.nome-time{
+    font-size:24px;
+    font-weight:700;
+    margin-top:10px;
+}
+
+.versus{
+    font-size:32px;
+    font-weight:800;
+    color:#666;
+}
+.topo{
+    text-align:center;
+    color:white;
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:1px;
+    margin-bottom:30px;
+    text-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+#adminBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    font-size:24px;
+
+    z-index:999;
+}
+</style>
+</head>
+<body>
+<div class="topo">
+ Bolão do Viteras 
+</div>
+<div class="container">
+
+    <div class="card">
+
+      <div class="banner-jogo">
+
+    <div class="time">
+        <div class="bandeira">
+            🇧🇷
+        </div>
+        <div class="nome-time">
+            Brasil
+        </div>
+    </div>
+
+    <div class="versus">
+        VS
+    </div>
+
+    <div class="time">
+        <div class="bandeira">
+            🇭🇹
+        </div>
+        <div class="nome-time">
+            Haiti
+        </div>
+    </div>
+
+</div>
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite seu nome"
+        >
+
+        <input
+            type="tel"
+            id="celular"
+            placeholder="Digite seu celular"
+        >
+
+        <div class="placar">
+
+            <div>
+                <label>Brasil</label>
+                <input
+                    type="number"
+                    id="brasil"
+                    min="0"
+                >
+            </div>
+
+            <div>
+                <label>Haiti</label>
+                <input
+                    type="number"
+                    id="haiti"
+                    min="0"
+                >
+            </div>
+
+        </div>
+
+        <button onclick="salvarPalpite()">
+            Enviar Palpite
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Participantes</h2>
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Celular</th>
+                    <th>Palpite</th>
+                    <th>Status</th>
+<th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody id="listaParticipantes">
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="card" id="pagamento">
+
+        <h2>💰 Pagamento da Inscrição</h2>
+
+        <p>Para validar sua participação:</p>
+
+        <div class="valor">
+            R$ 3,50
+        </div>
+
+        <p>
+            Realize o PIX e envie o comprovante para:
+        </p>
+
+        <br>
+
+        <div class="email">
+            smuniz50@yahoo.com
+        </div>
+
+        <div class="info">
+            Seu palpite já foi registrado.
+            A participação será confirmada após o envio do comprovante.
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let participantes =
+JSON.parse(
+localStorage.getItem("participantes")
+) || [];
+let admin = false;
+
+async function salvarPalpite(){
+
+    let nome =
+    document.getElementById("nome").value.trim();
+
+    let celular =
+    document.getElementById("celular").value.trim();
+
+    let brasil =
+    document.getElementById("brasil").value;
+
+    let haiti =
+    document.getElementById("haiti").value;
+
+    if(
+        nome === "" ||
+        celular === "" ||
+        brasil === "" ||
+        haiti === ""
+    ){
+        mostrarMensagem(
+    "Preencha todos os campos.",
+    "erro"
+);
+        return;
+    }
+
+
+    try{
+
+      const resposta = await fetch(
+    "https://script.google.com/macros/s/AKfycbwl5CNCW3L3IB1iMYjCdaAEnZAXkpiSEC647iiMlrA4rMSRBjY8-xlFloeQSc98kRrndw/exec",
+    {
+        method:"POST",
+        body:new URLSearchParams({
+            nome:nome,
+            celular:celular,
+            brasil:brasil,
+            haiti:haiti
+        })
+    }
+);
+
+        if(!resposta.ok){
+            throw new Error("Erro no servidor");
+        }
+
+      participantes.push({
+    nome,
+    celular,
+    brasil,
+    haiti,
+    pago:false
+});
+
+        localStorage.setItem(
+            "participantes",
+            JSON.stringify(participantes)
+        );
+
+
+        atualizarTabela();
+
+        document
+        .getElementById("pagamento")
+        .style.display = "block";
+
+        document.getElementById("nome").value = "";
+        document.getElementById("celular").value = "";
+        document.getElementById("brasil").value = "";
+        document.getElementById("haiti").value = "";
+
+        window.scrollTo({
+            top:document.body.scrollHeight,
+            behavior:"smooth"
+        });
+mostrarMensagem(
+    "✅ Palpite enviado com sucesso!"
+);
+
+    }catch(erro){
+
+        console.error(erro);
+
+       mostrarMensagem(
+    "❌ Erro ao enviar para a planilha.",
+    "erro"
+);
+
+    }
+
+}
+function mostrarMensagem(texto, tipo="sucesso"){
+
+    const toast =
+    document.getElementById("toast");
+
+    toast.textContent = texto;
+
+    toast.className =
+    tipo === "erro"
+    ? "toast erro show"
+    : "toast show";
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3500);
+
+}
+function ativarModoAdmin(){
+
+    const senha =
+    prompt("Senha do administrador:");
+
+    if(senha === "1234"){
+
+        admin = true;
+
+        atualizarTabela();
+
+        mostrarMensagem(
+            "Modo administrador ativado."
+        );
+
+    }else{
+
+        mostrarMensagem(
+            "Senha incorreta.",
+            "erro"
+        );
+
+    }
+
+}
+function excluirParticipante(index){
+
+    if(!admin){
+        mostrarMensagem(
+            "Acesso negado.",
+            "erro"
+        );
+        return;
+    }
+
+    if(
+        !confirm(
+            "Deseja realmente remover este participante?"
+        )
+    ){
+        return;
+    }
+
+    participantes.splice(index,1);
+
+    localStorage.setItem(
+        "participantes",
+        JSON.stringify(participantes)
+    );
+
+    atualizarTabela();
+
+    mostrarMensagem(
+        "🗑️ Participante removido."
+    );
+
+}
+function confirmarPagamento(index){
+
+    participantes[index].pago = true;
+
+    localStorage.setItem(
+        "participantes",
+        JSON.stringify(participantes)
+    );
+
+    atualizarTabela();
+
+    mostrarMensagem(
+        "Pagamento confirmado."
+    );
+
+}
+function atualizarTabela(){
+
+    let tabela =
+    document.getElementById(
+        "listaParticipantes"
+    );
+
+    tabela.innerHTML = "";
+
+    participantes.forEach((p,index) => {
+
+        tabela.innerHTML += `
+        <tr>
+            <td>${p.nome}</td>
+            <td>${p.celular}</td>
+            <td>${p.brasil} x ${p.haiti}</td>
+            <td>
+    ${p.pago ? "✅ Pago" : "⏳ Pendente"}
+</td>
+            <td>
+${admin ? `
+
+<button
+onclick="confirmarPagamento(${index})"
+style="
+background:#009c3b;
+width:auto;
+padding:6px 12px;
+margin-right:5px;
+"
+>
+${p.pago ? "✅ Pago" : "💰 Confirmar"}
+</button>
+
+<button
+onclick="excluirParticipante(${index})"
+style="
+background:#d32f2f;
+width:auto;
+padding:6px 12px;
+"
+>
+❌
+</button>
+
+` : ""}
+</td>
+        </tr>
+        `;
+
+    });
+
+}
+
+atualizarTabela();
+
+</script>
+<div id="toast" class="toast"></div>
+<button
+id="adminBtn"
+onclick="ativarModoAdmin()"
+>
+🔐
+</button>
+</body>
+</html>
