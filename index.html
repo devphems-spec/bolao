@@ -405,12 +405,30 @@ th{
 
 <script>
 
-let participantes =
-JSON.parse(
-localStorage.getItem("participantes")
-) || [];
+let participantes = [];
 let admin = false;
+async function carregarParticipantes(){
 
+    try{
+
+        const resposta = await fetch(
+            "SUA_URL_DO_APPS_SCRIPT"
+        );
+
+        participantes = await resposta.json();
+
+       carregarParticipantes();
+
+    }catch(erro){
+
+        console.error(
+            "Erro ao carregar participantes:",
+            erro
+        );
+
+    }
+
+}
 async function salvarPalpite(){
 
     let nome =
@@ -458,21 +476,7 @@ async function salvarPalpite(){
             throw new Error("Erro no servidor");
         }
 
-      participantes.push({
-    nome,
-    celular,
-    brasil,
-    haiti,
-    pago:false
-});
-
-        localStorage.setItem(
-            "participantes",
-            JSON.stringify(participantes)
-        );
-
-
-        atualizarTabela();
+   await carregarParticipantes();
 
         document
         .getElementById("pagamento")
