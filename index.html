@@ -666,8 +666,7 @@ function atualizarTabela(){
         <tr>
             <td>${p.nome}</td>
             <td>
-${"*".repeat(Math.max(0, p.celular.length - 3))}
-${p.celular.slice(-3)}
+${String(p.celular).replace(/\d(?=\d{3})/g, "*")}
 </td>
             <td>${p.brasil} x ${p.escocia}</td>
             <td>
