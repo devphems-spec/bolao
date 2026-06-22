@@ -306,12 +306,12 @@ th{
     </div>
 
     <div class="time">
-        <div class="bandeira">
-            🇭🇹
-        </div>
-        <div class="nome-time">
-            Haiti
-        </div>
+      <div class="bandeira">
+    🏴
+</div>
+<div class="nome-time">
+    Escócia
+</div>
     </div>
 
 </div>
@@ -339,12 +339,12 @@ th{
             </div>
 
             <div>
-                <label>Haiti</label>
-                <input
-                    type="number"
-                    id="haiti"
-                    min="0"
-                >
+               <label>Escócia</label>
+<input
+    type="number"
+    id="escocia"
+    min="0"
+>
             </div>
 
         </div>
@@ -415,7 +415,7 @@ async function carregarParticipantes(){
     try{
 
         const resposta = await fetch(
-            "https://script.google.com/macros/s/AKfycbzyfPtT26UyBdo-nyYQGEcRyNaZ9F1yl822Rg4yA7P-KPgvMf5In-tUh-JWBbQcVd62-Q/exec"
+            "https://script.google.com/macros/s/AKfycbzxw8rx-DyPwHBN6S9I2smxUd98YEV8vkQPqf1L1m0bMcikUd_ECnCprJfspgIi0S_P/exec"
         );
 
         participantes = await resposta.json();
@@ -443,14 +443,14 @@ async function salvarPalpite(){
     let brasil =
     document.getElementById("brasil").value;
 
-    let haiti =
-    document.getElementById("haiti").value;
+ let escocia =
+document.getElementById("escocia").value;
 
     if(
         nome === "" ||
         celular === "" ||
         brasil === "" ||
-        haiti === ""
+       escocia === ""
     ){
         mostrarMensagem(
     "Preencha todos os campos.",
@@ -463,14 +463,14 @@ async function salvarPalpite(){
     try{
 
       const resposta = await fetch(
-    "https://script.google.com/macros/s/AKfycbzyfPtT26UyBdo-nyYQGEcRyNaZ9F1yl822Rg4yA7P-KPgvMf5In-tUh-JWBbQcVd62-Q/exec",
+    "https://script.google.com/macros/s/AKfycbzxw8rx-DyPwHBN6S9I2smxUd98YEV8vkQPqf1L1m0bMcikUd_ECnCprJfspgIi0S_P/exec",
     {
         method:"POST",
         body:new URLSearchParams({
             nome:nome,
             celular:celular,
             brasil:brasil,
-            haiti:haiti
+            escocia:escocia
         })
     }
 );
@@ -488,7 +488,7 @@ carregarParticipantes();
         document.getElementById("nome").value = "";
         document.getElementById("celular").value = "";
         document.getElementById("brasil").value = "";
-        document.getElementById("haiti").value = "";
+       document.getElementById("escocia").value = "";
 
         window.scrollTo({
             top:document.body.scrollHeight,
@@ -589,7 +589,7 @@ async function confirmarPagamento(index){
     try{
 
         const resposta = await fetch(
-            "https://script.google.com/macros/s/AKfycbzyfPtT26UyBdo-nyYQGEcRyNaZ9F1yl822Rg4yA7P-KPgvMf5In-tUh-JWBbQcVd62-Q/exec",
+            "https://script.google.com/macros/s/AKfycbzxw8rx-DyPwHBN6S9I2smxUd98YEV8vkQPqf1L1m0bMcikUd_ECnCprJfspgIi0S_P/exec",
             {
                 method:"POST",
                 body:new URLSearchParams({
@@ -634,7 +634,7 @@ function atualizarTabela(){
         <tr>
             <td>${p.nome}</td>
             <td>${p.celular}</td>
-            <td>${p.brasil} x ${p.haiti}</td>
+            <td>${p.brasil} x ${p.escocia}</td>
             <td>
     ${p.pago ? "✅ Pago" : "⏳ Pendente"}
 </td>
