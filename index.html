@@ -225,9 +225,22 @@ th{
     text-align:center;
 }
 
-.bandeira{
-    font-size:70px;
-    line-height:1;
+.bandeira img{
+    width:100px;
+    height:65px;
+    object-fit:cover;
+
+    border-radius:15px;
+    border:3px solid white;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.bandeira img:hover{
+    transform:scale(1.05);
 }
 
 .nome-time{
@@ -237,9 +250,22 @@ th{
 }
 
 .versus{
-    font-size:32px;
+    font-size:40px;
     font-weight:800;
-    color:#666;
+    color:#009c3b;
+
+    background:white;
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.15);
 }
 .topo{
     text-align:center;
@@ -293,9 +319,12 @@ th{
       <div class="banner-jogo">
 
     <div class="time">
-        <div class="bandeira">
-            🇧🇷
-        </div>
+      <div class="bandeira">
+    <img
+        src="https://flagcdn.com/w160/br.png"
+        alt="Brasil"
+    >
+</div>
         <div class="nome-time">
             Brasil
         </div>
@@ -306,8 +335,11 @@ th{
     </div>
 
     <div class="time">
-      <div class="bandeira">
-    🏴
+     <div class="bandeira">
+    <img
+        src="https://flagcdn.com/w160/gb-sct.png"
+        alt="Escócia"
+    >
 </div>
 <div class="nome-time">
     Escócia
