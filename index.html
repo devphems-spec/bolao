@@ -415,9 +415,9 @@ th{
 
         <p>Para validar sua participação:</p>
 
-        <div class="valor">
-            R$ 3,50
-        </div>
+       <div class="valor">
+    R$ 5,00
+</div>
 
         <p>
             Realize o PIX e envie o comprovante para:
@@ -665,7 +665,10 @@ function atualizarTabela(){
         tabela.innerHTML += `
         <tr>
             <td>${p.nome}</td>
-            <td>${p.celular}</td>
+            <td>
+${"*".repeat(Math.max(0, p.celular.length - 3))}
+${p.celular.slice(-3)}
+</td>
             <td>${p.brasil} x ${p.escocia}</td>
             <td>
     ${p.pago ? "✅ Pago" : "⏳ Pendente"}
